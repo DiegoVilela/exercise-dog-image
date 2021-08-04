@@ -15,17 +15,21 @@ class Dog extends Component {
     const response = await fetch(endpoint);
     const data = await response.json();
     const dog = await data.message;
-    console.log(dog);
+
+    this.setState({
+      loading: false,
+      dog,
+    });
   }
 
   showLoading = () => <span>Loading...</span>
  
   render() {
-    const { loading } = this.state;
+    const { loading, dog } = this.state;
 
     if (loading) return this.showLoading();
 
-    return <h1>Hi</h1>
+    return <img src={ dog } alt='A random dog.' />
   }  
 }
 
